@@ -1,0 +1,54 @@
+server:
+  port: 8055
+
+spring:
+  application:
+    name: mall-user-feign-demo  #微服务名称
+
+  cloud:
+    nacos:
+      discovery:  #配置nacos注册中心地址
+        server-addr: nacos.mall.com:8848
+        username: nacos
+        password: nacos
+
+    openfeign:   #openfeign的配置
+      client:
+        config:
+#          default: # 全局生效
+#            loggerLevel: BASIC
+          mall-order:  # 对应微服务
+            loggerLevel: FULL
+            # 连接超时时间
+            connectTimeout: 3000
+            # 请求处理超时时间
+            readTimeout: 5000
+            # 配置编解码器
+#            encoder: feign.jackson.JacksonEncoder
+#            decoder: feign.jackson.JacksonDecoder
+#            requestInterceptors: #配置拦截器
+#              - com.tuling.mall.feigndemo.interceptor.FeignAuthRequestInterceptor
+      httpclient:  #feign client使用 Apache HttpClient5
+        hc5:
+          enabled: true
+#      okhttp:       #feign client使用 okhttp
+#        enabled: true
+      compression: # 配置 GZIP 来压缩数据
+        request:
+          enabled: true
+          mime-types: text/xml,application/xml,application/json
+          min-request-size: 1024  # 最小请求压缩阈值
+        response:
+          enabled: true
+
+logging:
+  level:
+    com.tuling.mall.feigndemo.feign: debug   #打印openFegin日志
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

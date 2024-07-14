@@ -1,0 +1,28 @@
+server:
+  port: 8040
+
+spring:
+  application:
+    name: mall-user  #微服务名称
+
+  cloud:
+    nacos:
+      discovery:   #配置nacos注册中心地址
+        server-addr: nacos.mall.com:8848
+        #server-addr: 192.168.65.174:8848,192.168.65.192:8848,192.168.65.204:8848
+#        namespace: bc50d386-8870-4a26-8803-0187486c57be
+#        group: tulingshop
+        cluster-name: SH
+#        ephemeral: false
+        username: nacos
+        password: nacos
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+

@@ -1,0 +1,11 @@
+
+#spring:
+#  # Spring Security 配置项，对应 SecurityProperties 配置类
+#  security:
+#    user:
+#      name: user   # 用户名
+#      password: 123456  # 密码
+#      roles:   # 拥有角色
+#        - admin
+
+
